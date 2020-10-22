@@ -1,5 +1,7 @@
 # Flashpoint Submissions Website
 
+![Preview](https://i.imgur.com/MUpRGC6.png)
+
 Note - This is pretty new and has a few hardcoded urls that prevent general usage at the moment.
 
 ## Deploying
