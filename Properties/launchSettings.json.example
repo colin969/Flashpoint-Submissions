@@ -20,6 +20,12 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
+        "FUSIONAUTH_API_KEY": "",
+        "FUSIONAUTH_TENANT_ID": "",
+        "FUSIONAUTH_CLIENT_ID": "",
+        "FUSIONAUTH_CLIENT_SECRET": "",
+        "FUSIONAUTH_REDIRECT_URI": "https://example.com/callback",
+        "FUSIONAUTH_LOGOUT_REDIRECT_URI": "https://example.com/",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }

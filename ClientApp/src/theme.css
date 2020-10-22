@@ -1,0 +1,80 @@
+:root {
+  --layout__foreground-primary:   #bdbdbd;
+  --layout__foreground-secondary: #a7a1a1;
+}
+
+.submissions-upload {
+  background-color: var(--layout__foreground-primary);
+}
+
+.submissions-progress {
+  background-color: var(--layout__foreground-secondary);
+}
+
+.submission {
+  background-color: var(--layout__foreground-primary);
+}
+
+.submission-details {
+  background-color: var(--layout__foreground-secondary);
+}
+
+.user-preview__icon {
+  clip-path: circle();
+}
+
+.user-preview__username {
+  font-weight: bold;
+}
+
+.submission__download {
+  color: #00AA00;
+}
+
+.submission__download:hover {
+  color: darkgreen;
+}
+
+.submission__download:active {
+  color: #004400;
+}
+
+.submission__approve {
+  color: #00AA00;
+}
+
+.submission__approve:hover {
+  color: darkgreen;
+}
+
+.submission__approve:active {
+  color: #004400;
+}
+
+.submission__approve.approved {
+  color: #03db03;
+}
+
+.submission__approve.denied {
+  color: #00aa002e;
+}
+
+.submission__deny {
+  color: #AA0000;
+}
+
+.submission__deny:hover {
+  color: rgb(163, 2, 2);
+}
+
+.submission__deny:active {
+  color: darkred;
+}
+
+.submission__deny.approved {
+  color: #AA00002e;
+}
+
+.submission__deny.denied {
+  color: #da0606;
+}

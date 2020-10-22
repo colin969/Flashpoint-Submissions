@@ -1,10 +1,12 @@
+using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.FileProviders;
 
 namespace website
 {
@@ -21,8 +23,17 @@ namespace website
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
 
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".submissions.Session";
+                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddControllersWithViews();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -44,11 +55,17 @@ namespace website
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            var logoPath = Path.Combine(env.ContentRootPath, Configuration["LogoDataPath"]);
+            Directory.CreateDirectory(logoPath);
+            // app.UseHttpsRedirection();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(logoPath),
+                RequestPath = "/logos"
+            });
             app.UseSpaStaticFiles();
-
             app.UseRouting();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
