@@ -63,7 +63,7 @@ export function SubmissionBox(props: SubmissionBoxProps) {
 
   const onDeleteSubmission = () => {
     const { submission } = props;
-    if (confirm('Really delete this submission?')) {
+    if (window.confirm('Really delete this submission?')) {
       deleteSubmission(submission.id)
       .then((newSub) => {
         if (props.onSubmissionDeleted) { props.onSubmissionDeleted(newSub); }
@@ -74,7 +74,7 @@ export function SubmissionBox(props: SubmissionBoxProps) {
   const onApproveSubmission = () => {
     const updatedSub = {...props.submission}
     updatedSub.status = updatedSub.status === 'Approved' ? 'Awaiting Approval' : 'Approved';
-    if (confirm(`Really change submission to '${updatedSub.status}'?`)) {
+    if (window.confirm(`Really change submission to '${updatedSub.status}'?`)) {
       updateSubmission(updatedSub)
       .then((newSub) => {
         if (props.onSubmissionApproved) { props.onSubmissionApproved(newSub); }
@@ -85,7 +85,7 @@ export function SubmissionBox(props: SubmissionBoxProps) {
   const onRejectSubmission = () => {
     const updatedSub = {...props.submission}
     updatedSub.status = updatedSub.status === 'Rejected' ? 'Awaiting Approval' : 'Rejected';
-    if (confirm(`Really change submission to '${updatedSub.status}'?`)) {
+    if (window.confirm(`Really change submission to '${updatedSub.status}'?`)) {
       updateSubmission(updatedSub)
       .then((newSub) => {
         if (props.onSubmissionDenied) { props.onSubmissionDenied(newSub); }
@@ -142,7 +142,7 @@ export function SubmissionBox(props: SubmissionBoxProps) {
           <div className='submission__buttons'>
             {props.submission.status != 'Deleted' && (
               <div className='submission__download'>
-                <FaDownload onClick={() => { location.href = `/api/submission/${props.submission.id}/download`;}} />
+                <FaDownload onClick={() => { window.location.href = `/api/submission/${props.submission.id}/download`;}} />
               </div>
             )}
             { canDelete && (

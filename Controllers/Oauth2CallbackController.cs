@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ namespace website.Controllers
     [Route("[controller]")]
     public class Oauth2CallbackController : ControllerBase
     {
+        private static readonly string baseUrl = Environment.GetEnvironmentVariable("WEBSITE_BASE_URL");
 
         private static readonly HttpClient client = new HttpClient();
 
@@ -32,7 +34,7 @@ namespace website.Controllers
         {
           var token = FAuth.GetToken(code);
           HttpContext.Session.SetString("token", token.access_token);
-          return Redirect("https://submissions-dev.xyz/dashboard");
+          return Redirect(String.Format("{0}/dashboard", baseUrl));
         }
     }
 }

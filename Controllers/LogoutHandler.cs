@@ -24,7 +24,8 @@ namespace website.Controllers
         public RedirectResult Get()
         {
             HttpContext.Session.SetString("token", "");
-            return Redirect(String.Format("https://login.submissions-dev.xyz/oauth2/logout?client_id={0}&post_logout_redirect_uri={1}", FAuth.clientId, FAuth.logoutRedirectUri));
+            String logoutUri = String.Format("{0}/logout?client_id={1}&post_logout_redirect_uri={2}", FAuth.oauthUri, FAuth.clientId, FAuth.logoutRedirectUri);
+            return Redirect(logoutUri);
         }
     }
 }

@@ -232,5 +232,6 @@ _Pvt_Extensions
 .fake/
 
 userdata/
+data/
 submissions.db
 Properties/launchSettings.json

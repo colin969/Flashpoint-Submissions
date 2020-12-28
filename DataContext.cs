@@ -8,6 +8,6 @@ namespace website {
         public DbSet<Meta> Meta { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=submissions.db");
+            => options.UseSqlite("Data Source=data/submissions.db");
     }
 }

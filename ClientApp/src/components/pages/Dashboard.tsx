@@ -34,12 +34,13 @@ export class Dashboard extends Component<DashboardProps, DashboardState>{
 
   componentDidUpdate(prevProps: DashboardProps) {
     if (prevProps.user != this.props.user) {
-      this.setState({ hasMore: true }, this.getMoreSubmissions);
+      // User changed, clear submissions
+      this.setState({ submissions: [], hasMore: true }, this.getMoreSubmissions);
     }
   }
 
   addSubmission = (sub: Submission) => {
-    const newSubs = [...this.state.submissions || []];
+    const newSubs = [...this.state.submissions];
     newSubs.unshift(sub);
     this.setState({ submissions: newSubs });
   }

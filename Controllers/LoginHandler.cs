@@ -24,7 +24,8 @@ namespace website.Controllers
         [HttpGet]
         public RedirectResult Get()
         {
-          return Redirect(String.Format("https://login.submissions-dev.xyz/oauth2/authorize?client_id={0}&response_type=code&redirect_uri={1}", FAuth.clientId, FAuth.redirectUri));
+            String authUri = String.Format("{0}/authorize?client_id={1}&response_type=code&redirect_uri={2}", FAuth.oauthUri, FAuth.clientId, FAuth.redirectUri);
+            return Redirect(authUri);
         }
     }
 }

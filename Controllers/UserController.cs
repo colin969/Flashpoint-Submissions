@@ -25,6 +25,8 @@ namespace website.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
+        private static readonly string baseUrl = Environment.GetEnvironmentVariable("WEBSITE_BASE_URL");
+
         private readonly ILogger<UserController> _logger;
 
         public UserController(ILogger<UserController> logger)
@@ -38,7 +40,7 @@ namespace website.Controllers
           if (token != "") {
             var valid = FAuth.ValidateToken(token);
             if (!valid) {
-              return Redirect("https://submissions-dev.xyz/login");
+              return Redirect(String.Format("{0}/login", baseUrl));
             }
             var user = FAuth.GetUserByToken(token);
             if (user.email != fpUser.email) { return StatusCode(403); }
@@ -54,7 +56,7 @@ namespace website.Controllers
           if (token != "") {
             var valid = FAuth.ValidateToken(token);
             if (!valid) {
-              return Redirect("https://submissions-dev.xyz/login");
+              return StatusCode(403);
             }
             var user = FAuth.GetUserById(id);
             var userReg = user.registrations.Single(reg => reg.applicationId.ToString() == FAuth.clientId);
@@ -77,7 +79,7 @@ namespace website.Controllers
           if (token != "") {
             var valid = FAuth.ValidateToken(token);
             if (!valid) {
-              return Redirect("https://submissions-dev.xyz/login");
+              return StatusCode(403);
             }
             var user = FAuth.GetUserByToken(token);
             var userReg = user.registrations.Single(reg => reg.applicationId.ToString() == FAuth.clientId);

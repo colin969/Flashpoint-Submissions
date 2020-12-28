@@ -21,11 +21,14 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "FUSIONAUTH_API_KEY": "",
-        "FUSIONAUTH_TENANT_ID": "",
+        "FUSIONAUTH_TENANT_ID": "1",
         "FUSIONAUTH_CLIENT_ID": "",
         "FUSIONAUTH_CLIENT_SECRET": "",
-        "FUSIONAUTH_REDIRECT_URI": "https://example.com/callback",
-        "FUSIONAUTH_LOGOUT_REDIRECT_URI": "https://example.com/",
+        "FUSIONAUTH_OAUTH_URI": "https://login.submissions-dev.xyz/oauth2",
+        "FUSIONAUTH_REDIRECT_URI": "https://submissions-dev.xyz/oauth2callback",
+        "FUSIONAUTH_LOGOUT_REDIRECT_URI": "https://submissions-dev.xyz/",
+        "WEBSITE_BASE_URL": "https://submissions-dev.xyz",
+        "WEBSITE_MASTER_API_KEY": "88888888888888888888888888888888888888888888888888888888",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }

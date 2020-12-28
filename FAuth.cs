@@ -16,11 +16,12 @@ namespace website
         private static readonly string tenantId = Environment.GetEnvironmentVariable("FUSIONAUTH_TENANT_ID");
         public static readonly string redirectUri = Environment.GetEnvironmentVariable("FUSIONAUTH_REDIRECT_URI");
         public static readonly string logoutRedirectUri = Environment.GetEnvironmentVariable("FUSIONAUTH_LOGOUT_REDIRECT_URI");
+        public static readonly string oauthUri = Environment.GetEnvironmentVariable("FUSIONAUTH_OAUTH_URI");
 
         public static readonly string clientId = Environment.GetEnvironmentVariable("FUSIONAUTH_CLIENT_ID");
         private static readonly string clientSecret = Environment.GetEnvironmentVariable("FUSIONAUTH_CLIENT_SECRET");
 
-        private static readonly string fusionauthURL = "http://localhost:9011";
+        private static readonly string fusionauthURL = Environment.GetEnvironmentVariable("FUSIONAUTH_URI");
 
         public static AccessToken GetToken(string code) {
             var client = new FusionAuthSyncClient(apiKey, fusionauthURL, tenantId);

@@ -157,7 +157,7 @@ namespace website.Controllers
             Boolean validApiKey = false;
             HttpContext.Request.Headers.TryGetValue("ApiKey", out apiKey);
             if (apiKey.Count() > 0) {
-                validApiKey = _config.GetSection("ApiKeys").GetChildren().ToArray().Select(c => c.Value).Contains(apiKey.Single());
+                validApiKey = Environment.GetEnvironmentVariable("WEBSITE_MASTER_API_KEY") == apiKey.Single();
             }
             var token = HttpContext.Session.GetString("token");
             if (validApiKey || FAuth.ValidateToken(token)) {

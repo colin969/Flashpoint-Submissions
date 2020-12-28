@@ -7,12 +7,13 @@ export type LoginLogoutButtonProps = {
 export function LoginLogoutButton(props: LoginLogoutButtonProps) {
   return (
     <form>
-      <button
+      <a
+        type='button'
         className={`btn ${props.loggedIn ? 'btn-danger' : 'btn-success'}`}
-        formAction={props.loggedIn ? '/logout' : '/login'}
+        href={props.loggedIn ? '/logout' : '/login'}
       >
         {props.loggedIn ? 'Logout' : 'Login'}
-      </button>
+      </a>
     </form>
   );
 }
