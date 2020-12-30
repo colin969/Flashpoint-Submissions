@@ -12,6 +12,7 @@ import { ReviewHub } from './components/pages/ReviewHub';
 import { UsersPage } from './components/pages/UsersPage';
 import { Page404 } from './components/pages/Page404';
 import { SubmissionPage } from './components/pages/SubmissionPage';
+import { ForceReload } from './components/pages/ForceReload';
 
 export type AppProps = {}
 
@@ -49,6 +50,10 @@ export default class App extends Component<AppProps, AppState> {
       <Layout user={this.state.user}>
         <Switch>
           <Route exact path='/' component={Home} />
+          {/** Cheap workaround to redirect to ASP.NET for now */}
+          <Route path='/login' component={ForceReload} />
+          <Route path='/logout' component={ForceReload} />
+          <Route path='/oauth2callback' component={ForceReload} />
           <AuthorizedRoute path='/dashboard' render={() => (
             <Dashboard user={this.state.user}/>  
           )} 
