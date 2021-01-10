@@ -1,18 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
+import { AuthorizedRoute } from './components/AuthorizedRoute';
+import { Layout } from './components/Layout';
 import { Dashboard } from './components/pages/Dashboard';
 import { Home } from './components/pages/Home';
-import { Layout } from './components/Layout';
+import { Page404 } from './components/pages/Page404';
+import { ReviewHub } from './components/pages/ReviewHub';
+import { SubmissionPage } from './components/pages/SubmissionPage';
+import { UsersPage } from './components/pages/UsersPage';
 import './custom.css';
 import './theme.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { AuthorizedRoute } from './components/AuthorizedRoute';
 import { User } from './types/User';
-import { ReviewHub } from './components/pages/ReviewHub';
-import { UsersPage } from './components/pages/UsersPage';
-import { Page404 } from './components/pages/Page404';
-import { SubmissionPage } from './components/pages/SubmissionPage';
-import { ForceReload } from './components/pages/ForceReload';
 
 export type AppProps = {}
 
@@ -50,10 +49,6 @@ export default class App extends Component<AppProps, AppState> {
       <Layout user={this.state.user}>
         <Switch>
           <Route exact path='/' component={Home} />
-          {/** Cheap workaround to redirect to ASP.NET for now */}
-          <Route path='/login' component={ForceReload} />
-          <Route path='/logout' component={ForceReload} />
-          <Route path='/oauth2callback' component={ForceReload} />
           <AuthorizedRoute path='/dashboard' render={() => (
             <Dashboard user={this.state.user}/>  
           )} 

@@ -93,7 +93,8 @@ export function SubmissionBox(props: SubmissionBoxProps) {
     }
   }
 
-  const canDelete = props.submission.status != 'Deleted' && (props.roles.includes('staff') || props.userId == submission.authorId) && props.submission.status !== 'Approved'; 
+  const isStaff = props.roles.includes('staff');
+  const canDelete = props.submission.status != 'Deleted' && (isStaff || props.userId == submission.authorId) && props.submission.status !== 'Approved'; 
   const approvalClass = props.submission.status === 'Approved' ? 'approved' :
                       props.submission.status === 'Rejected' ? 'denied' : '';
 
@@ -156,12 +157,17 @@ export function SubmissionBox(props: SubmissionBoxProps) {
                 <div className='submission__expand'>
                   <FaEllipsisV onClick={onToggleExpand}/>
                 </div>
-                <div className={`submission__approve ${approvalClass}`}>
-                  <FaThumbsUp onClick={onApproveSubmission}/>
-                </div>
-                <div className={`submission__deny ${approvalClass}`}>
-                  <FaThumbsDown onClick={onRejectSubmission}/>
-                </div>
+                { isStaff ? (
+                  <div>
+                    <div className={`submission__approve ${approvalClass}`}>
+                      <FaThumbsUp onClick={onApproveSubmission}/>
+                    </div>
+                    <div className={`submission__deny ${approvalClass}`}>
+                      <FaThumbsDown onClick={onRejectSubmission}/>
+                    </div>
+                  </div>
+                )
+                : undefined}
             </div>
           )}
         </div>

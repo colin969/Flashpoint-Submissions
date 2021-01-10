@@ -31,6 +31,7 @@ namespace website.Controllers
             Directory.CreateDirectory(_config["LogoDataPath"]);
         }
 
+        [DisableRequestSizeLimit]
         [HttpPost]
         public async Task<IActionResult> Post(IFormCollection form)
         {

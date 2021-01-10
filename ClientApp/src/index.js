@@ -14,5 +14,6 @@ ReactDOM.render(
   </BrowserRouter>,
   rootElement);
 
-registerServiceWorker();
+// TODO: Find out why the service worker breaks redirects
+// registerServiceWorker();
 
